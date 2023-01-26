@@ -15,6 +15,8 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesService } from '@zarafe/products';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 const UX_MODULE=[
@@ -22,6 +24,7 @@ const UX_MODULE=[
     ToolbarModule,
     ButtonModule,
     TableModule,
+    InputTextModule,
 
 ]
 
@@ -34,17 +37,22 @@ const routes: Routes = [
       {
         path:'dashboard',
         component:DashboardComponent
-    }, {
+    },
+    {
       path:'categories',
       component:CategoriesListComponent
   },
+  {
+    path:'categories/form',
+    component:CategoriesFormComponent
+},
 
 
 ]
 }
 ];
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent],
     imports: [BrowserModule,
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
       ...UX_MODULE,
