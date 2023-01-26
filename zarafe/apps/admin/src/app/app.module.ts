@@ -13,7 +13,9 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { CategoriesService } from '@zarafe/products';
+
 
 const UX_MODULE=[
     CardModule,
@@ -32,16 +34,21 @@ const routes: Routes = [
       {
         path:'dashboard',
         component:DashboardComponent
+    }, {
+      path:'categories',
+      component:CategoriesListComponent
+  },
 
-    },
 
 ]
 }
 ];
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent],
     imports: [BrowserModule,
-      HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }), UX_MODULE, CardModule,
+      HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
+      ...UX_MODULE,
+      CardModule,
 
 
   ],
