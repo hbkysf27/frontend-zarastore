@@ -1,16 +1,52 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ShellComponent } from './shared/shell/shell.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
+
+import {CardModule} from 'primeng/card';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+import { CategoriesService } from '@zarafe/products';
+
+const UX_MODULE=[
+    CardModule,
+    ToolbarModule,
+    ButtonModule,
+    TableModule,
+
+]
+
+
+const routes: Routes = [
+  {
+    path:'',
+    component:ShellComponent,
+    children : [
+      {
+        path:'dashboard',
+        component:DashboardComponent
+
+    },
+
+]
+}
+];
 @NgModule({
-    declarations: [AppComponent, NxWelcomeComponent, DashboardComponent],
-    imports: [BrowserModule, RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' })],
-    providers: [],
-    bootstrap: [AppComponent]
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent],
+    imports: [BrowserModule,
+      HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }), UX_MODULE, CardModule,
+
+
+  ],
+    providers: [CategoriesService],
+    bootstrap: [AppComponent],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule {}

@@ -9,7 +9,7 @@
                     "error",
                     {
                         "type": "attribute",
-                        "prefix": "zarafe",
+                        "prefix": "admin",
                         "style": "camelCase"
                     }
                 ],
@@ -17,7 +17,7 @@
                     "error",
                     {
                         "type": "element",
-                        "prefix": "zarafe",
+                        "prefix": "admin",
                         "style": "kebab-case"
                     }
                 ]
