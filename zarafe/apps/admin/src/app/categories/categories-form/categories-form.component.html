@@ -5,7 +5,7 @@
         <p-toolbar>
           <div class="p-toolbar-group-end"></div>
           <div class="p-toolbar-group-start">
-            <p-button label="Create" icon="pi pi-plus" styleClass="p-button-primary mr-2"></p-button>
+            <p-button label="Create" icon="pi pi-plus" styleClass="p-button-primary mr-2" (click)="onSubmit"></p-button>
             <p-button label="Cancel" icon="pi pi-arrow-circle-left" styleClass="p-button-secondary"></p-button>
             </div>
             </p-toolbar>
@@ -16,16 +16,18 @@
     <div class="grid">
       <div class="col-12">
 
-        <form>
+        <form [formGroup]="form">
           <div class="card">
             <div class="formgrid grid">
                 <div class="field col">
                     <label for="name">Name</label>
-                    <input id="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                </div>
-                <div class="field col">
-                    <label for="icon">Icon</label>
-                    <input id="icon" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    <input formControlName="name" id="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <small *ngIf="categoryForm.name.invalid && isSubmitted" class="p-error">Name is Required</small>
+              </div>
+              <div class="field col">
+                <label for="icon">Icon</label>
+                <input formControlName="icon" id="icon" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                <small *ngIf="categoryForm.icon.invalid && isSubmitted" class="p-error">Icon is Required</small>
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ import { CategoriesListComponent } from './categories/categories-list/categories
 import { CategoriesService } from '@zarafe/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const UX_MODULE=[
@@ -57,6 +58,9 @@ const routes: Routes = [
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
       ...UX_MODULE,
       CardModule,
+      FormsModule,
+      ReactiveFormsModule,
+
 
 
   ],
