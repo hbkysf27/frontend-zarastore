@@ -19,7 +19,7 @@ export class CategoriesFormComponent {
 
   form:FormGroup;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  isSubmitted: boolean = false;
+  isSubmitted = false;
   editmode= false;
   currentCategoryId: string;
 
@@ -57,24 +57,24 @@ export class CategoriesFormComponent {
 
   }
   private _addCategory(category : Category){
-    this.categoriesService.createCategory(category).subscribe((response) => {
-      this.messageService.add({severity:'success', summary:'success', detail:'Category Created'});
+    this.categoriesService.createCategory(category).subscribe((category: Category) => {
+      this.messageService.add({severity:'success', summary:'success', detail:`Category ${category.name} is Created`});
       timer(2000).toPromise().then((done) =>{
         this.location.back();
 
       });
     },
-    (error) => {
-      this.messageService.add({severity:'error', summary:'Error', detail:'Category Not Created'});
+    () => {
+      this.messageService.add({severity:'error', summary:'Error', detail:'Category is Not Created'});
     }
     );
 
   }
   private _updateCategory(category :Category){
 
-    this.categoriesService.updateCategory(category).subscribe((response) => {
+    this.categoriesService.updateCategory(category).subscribe(() => {
       this.messageService.add({severity:'success', summary:'success', detail:'Category Updated'});
-      timer(2000).toPromise().then((done) =>{
+      timer(2000).toPromise().then(() =>{
         this.location.back();
 
       });

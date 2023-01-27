@@ -30,21 +30,16 @@ export class CategoriesListComponent {
       header: 'Delete Catefory',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categriesService.deleteCategory(categoryId).subscribe(response =>{
+        this.categriesService.deleteCategory(categoryId).subscribe(() =>{
           this._getCategories()
           this.messageService.add({severity:'success', summary:'success', detail:'Category Deleted'});
-
         },
-        (error) => {
+        () => {
           this.messageService.add({severity:'error', summary:'Error', detail:'Category Not Deleted'});
         }
         );
       },
-      reject: (type) => {
-
-          }
-
-  });
+});
 
   }
 
