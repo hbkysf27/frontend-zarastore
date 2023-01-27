@@ -20,7 +20,8 @@ import { CategoriesService } from '@zarafe/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 const UX_MODULE=[
@@ -30,6 +31,7 @@ const UX_MODULE=[
     TableModule,
     InputTextModule,
     ToastModule,
+    ConfirmDialogModule,
 
 ]
 
@@ -51,6 +53,10 @@ const routes: Routes = [
     path:'categories/form',
     component:CategoriesFormComponent
 },
+{
+  path:'categories/form/:id',
+  component:CategoriesFormComponent
+},
 
 
 ]
@@ -69,7 +75,7 @@ const routes: Routes = [
 
 
   ],
-    providers: [CategoriesService, MessageService],
+    providers: [CategoriesService, MessageService,ConfirmationService],
     bootstrap: [AppComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
