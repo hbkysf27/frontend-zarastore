@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +19,8 @@ import { CategoriesListComponent } from './categories/categories-list/categories
 import { CategoriesService } from '@zarafe/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import {InputTextModule} from 'primeng/inputtext';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 const UX_MODULE=[
@@ -26,6 +29,7 @@ const UX_MODULE=[
     ButtonModule,
     TableModule,
     InputTextModule,
+    ToastModule,
 
 ]
 
@@ -55,6 +59,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent],
     imports: [BrowserModule,
+      BrowserAnimationsModule,
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
       ...UX_MODULE,
       CardModule,
@@ -64,7 +69,7 @@ const routes: Routes = [
 
 
   ],
-    providers: [CategoriesService],
+    providers: [CategoriesService, MessageService],
     bootstrap: [AppComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
