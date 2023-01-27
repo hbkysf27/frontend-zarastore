@@ -30,6 +30,7 @@ export class CategoriesFormComponent {
     this.form=this.formBuilder.group({
       name:['',Validators.required],
       icon:['',Validators.required],
+      color:['#fff'],
     });
 
     this._checkEditMode();
@@ -43,7 +44,8 @@ export class CategoriesFormComponent {
     const category : Category ={
       id : this.currentCategoryId,
       name: this.categoryForm.name.value,
-      icon: this.categoryForm.icon.value
+      icon: this.categoryForm.icon.value,
+      color: this.categoryForm.color.value,
     };
     if(this.editmode){
       this._updateCategory(category);
@@ -92,7 +94,8 @@ export class CategoriesFormComponent {
         this.categoriesService.getCategory(params.id).subscribe(category=>{
           this.categoryForm.name.setValue(category.name);
           this.categoryForm.icon.setValue(category.icon);
-        })
+          this.categoryForm.color.setValue(category.color);
+        });
       }
     });
 
