@@ -18,7 +18,8 @@
             "@zarafe/orders": ["libs/orders/src/index.ts"],
             "@zarafe/products": ["libs/products/src/index.ts"],
             "@zarafe/ui": ["libs/ui/src/index.ts"],
-            "@zarafe/users": ["libs/users/src/index.ts"]
+            "@zarafe/users": ["libs/users/src/index.ts"],
+            "@env/*": ["environments/*"],
         }
     },
     "exclude": ["node_modules", "tmp"]
