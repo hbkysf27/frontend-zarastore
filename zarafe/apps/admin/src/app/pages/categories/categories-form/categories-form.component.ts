@@ -41,6 +41,11 @@ export class CategoriesFormComponent {
     {
       return;
     }
+
+
+
+
+
     const category : Category ={
       id : this.currentCategoryId,
       name: this.categoryForm.name.value,
@@ -55,6 +60,10 @@ export class CategoriesFormComponent {
 
     }
 
+  }
+
+  onCancle(){
+    this.location.back();
   }
   private _addCategory(category : Category){
     this.categoriesService.createCategory(category).subscribe((category: Category) => {
@@ -104,3 +113,7 @@ export class CategoriesFormComponent {
     return this.form.controls;
   }
 }
+function goback() {
+  throw new Error('Function not implemented.');
+}
+
