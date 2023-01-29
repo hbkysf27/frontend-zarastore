@@ -68,8 +68,6 @@
 
 
                 <div class="field col-12">
-                  <label for="description">Description</label>
-                  <input formControlName="description" id="description" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                   <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error">Description is Required</small>
                   </div>
                   <div class="field col">
@@ -79,18 +77,24 @@
                     <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error">Description is Required</small>
 
                   </div>
-                  <div class="field col-12">
-                    <label for="description">Description</label>
-                    <input formControlName="description" id="description" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                    <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error">Description is Required</small>
-                    </div>
-                    <div class="field col">
-                      <label for="description">Description</label><br>
 
-                      <textarea pInputTextarea formControlName="description" [rows]="7" [cols]="30"></textarea>
-                      <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error">Description is Required</small>
 
-                    </div>
+                    <div class="field col-12">
+                      <label for="richDescription">Rich Description</label>
+                      <p-editor formControlName="richDescription" [style]="{'height':'320px'}"></p-editor>
+                      </div>
+                      <div class="field col-12">
+                        <label for ="name">Main Image</label><br>
+                        <input type="file" accept="image/*" class="p-inputtext" (change)="onImageUpload($event)"/>
+
+                        <div class="col-2 mt-2 pl-0">
+                          <img style="width: 100%"  [src]="imageDisplay" />
+                        </div>
+
+
+                        </div>
+
+
 
             </div>
 

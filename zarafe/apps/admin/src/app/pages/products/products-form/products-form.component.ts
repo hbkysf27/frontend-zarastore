@@ -15,6 +15,7 @@ export class ProductsFormComponent {
   form: FormGroup;
   isSubmitted=false;
   categories=[];
+  imageDisplay:string | ArrayBuffer;
 
   constructor(private formBuilder: FormBuilder, private categoriesService: CategoriesService){}
 
@@ -43,9 +44,6 @@ export class ProductsFormComponent {
       this.categories = categories;
     });
   }
-  get productForm() {
-    return this.form.controls;
-  }
 
   onSubmit(){
 
@@ -53,5 +51,23 @@ export class ProductsFormComponent {
   onCancle(){
 
   }
+  onImageUpload(event){
+    const file = event.target.files[0];
+    if (file) {
+      this.form.patchValue({ image: file });
+      this.form.get('image').updateValueAndValidity();
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        this.imageDisplay = fileReader.result;
+      };
+      fileReader.readAsDataURL(file);
+    }
+  }
+
+  get productForm() {
+    return this.form.controls;
+  }
+
+
 
 }

@@ -33,6 +33,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {EditorModule} from 'primeng/editor';
 
 
+
 const UX_MODULE=[
     CardModule,
     ToolbarModule,
@@ -46,7 +47,7 @@ const UX_MODULE=[
     InputTextareaModule,
     InputSwitchModule,
     DropdownModule,
-    EditorModule,
+    EditorModule
 
 
 ]
