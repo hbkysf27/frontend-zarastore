@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent],
+    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent],
     imports: [BrowserModule,BrowserAnimationsModule, RouterModule.forRoot(routes), UiModule, AccordionModule],
     providers: [],
     bootstrap: [AppComponent]
