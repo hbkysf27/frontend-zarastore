@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component ,OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CategoriesService, Product, ProductsService } from '@zarafe/products';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
@@ -11,19 +13,21 @@ import { timer } from 'rxjs';
   styles: [
   ]
 })
-export class ProductsFormComponent {
+export class ProductsFormComponent implements OnInit {
 
   editmode=false;
   form: FormGroup;
   isSubmitted=false;
   categories=[];
   imageDisplay:string | ArrayBuffer;
+  currentProductId: string;
 
-  constructor(private formBuilder: FormBuilder, private categoriesService: CategoriesService, private productsService:ProductsService, private messageService:MessageService, private location : Location){}
+  constructor(private formBuilder: FormBuilder, private categoriesService: CategoriesService, private productsService:ProductsService, private messageService:MessageService, private location : Location, private route: ActivatedRoute){}
 
   ngOnInit(): void{
     this._initForm();
     this._getCategories();
+    this._checkEditMode();
   }
 
   private _initForm(){
@@ -35,9 +39,8 @@ export class ProductsFormComponent {
       countInStock: ['', Validators.required],
       description: ['', Validators.required],
       richDescription: [''],
-      image: ['', Validators.required],
+      image: [''],
       isFeatured: [false],
-
     });
   }
 
@@ -58,7 +61,7 @@ export class ProductsFormComponent {
         timer(2000)
           .toPromise()
           .then(() => {
-            this.location.reload();
+            this.location.back  ();
           });
       },
       () => {
@@ -71,6 +74,52 @@ export class ProductsFormComponent {
     );
   }
 
+ private _updateProduct(productFormData: FormData) {
+    this.productsService.updateProduct(productFormData, this.currentProductId).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Product is updated!'
+        });
+        timer(2000)
+          .toPromise()
+          .then(() => {
+            this.location.back();
+          });
+      },
+      () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Product is not updated!'
+        });
+      }
+    );
+  }
+
+  private _checkEditMode() {
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.editmode = true;
+        this.currentProductId = params.id;
+        this.productsService.getProduct(params.id).subscribe((product) => {
+          this.productForm.name.setValue(product.name);
+          this.productForm.category.setValue(product.category.id);
+          this.productForm.brand.setValue(product.brand);
+          this.productForm.price.setValue(product.price);
+          this.productForm.countInStock.setValue(product.countInStock);
+          this.productForm.isFeatured.setValue(product.isFeatured);
+          this.productForm.description.setValue(product.description);
+          this.productForm.richDescription.setValue(product.richDescription);
+          this.imageDisplay = product.image;
+          this.productForm.image.setValidators([]);
+          this.productForm.image.updateValueAndValidity();
+        });
+      }
+    });
+  }
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.form.invalid) return;
@@ -79,13 +128,15 @@ export class ProductsFormComponent {
     Object.keys(this.productForm).map((key) => {
       productFormData.append(key, this.productForm[key].value);
     });
-    // if (this.editmode) {
-    //   this._updateProduct(productFormData);
-    // } else {
-    //   this._addProduct(productFormData);
-    // }
+    if (this.editmode) {
+      this._updateProduct(productFormData);
+    } else {
+      this._addProduct(productFormData);
+    }
   }
-  onCancle(){}
+  onCancle(){
+    this.location.back();
+  }
 
   onImageUpload(event){
     const file = event.target.files[0];

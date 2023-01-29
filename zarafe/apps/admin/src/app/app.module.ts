@@ -31,6 +31,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {DropdownModule} from 'primeng/dropdown';
 import {EditorModule} from 'primeng/editor';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
 
 
 
@@ -90,7 +92,7 @@ component:ProductsFormComponent
 }
 ];
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent, UsersListComponent],
     imports: [BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
