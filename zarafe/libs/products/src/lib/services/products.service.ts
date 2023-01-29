@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import {environment} from '@env/environment';
 import { Product } from '../models/product';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,15 +25,15 @@ export class ProductsService {
     //   return this.http.get<Product>(`${this.apiURLProducts}/${productId}`);
     // }
 
-    // createProduct(product:Product):Observable<Product>{
-    //   return this.http.post<Product>(this.apiURLProducts,product);
-    // }
+    createProduct(productData: FormData): Observable<Product> {
+      return this.http.post<Product>(this.apiURLProducts, productData);
+    }
 
-    // updateProduct(product:Product):Observable<Product>{
-    //   return this.http.put<Product>(`${this.apiURLProducts}/${product.id}`,product);
-    // }
+    updateProduct(product:Product):Observable<Product>{
+      return this.http.put<Product>(`${this.apiURLProducts}/${product.id}`,product);
+    }
 
-    // deleteProduct(productId:string):Observable<any>{
-    //   return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
-    // }
+    deleteProduct(productId:string):Observable<any>{
+      return this.http.delete<any>(`${this.apiURLProducts}/${productId}`);
+    }
   }

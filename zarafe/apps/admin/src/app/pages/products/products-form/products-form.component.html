@@ -53,8 +53,6 @@
                   <p-dropdown [options]="categories" formControlName="category" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Category"></p-dropdown>
 
 
-                  <!-- <p-inputNumber formControlName="countInStock" mode="decimal" inputId="countInStock" [useGrouping]="false">
-                  </p-inputNumber> -->
                   <small *ngIf="productForm.category.invalid && isSubmitted" class="p-error">Category is Required</small>
 
                 </div>
@@ -92,6 +90,24 @@
                         </div>
 
 
+                        </div>
+
+                        <div class="p-field p-col-4">
+                          <label for="category">category</label><br />
+                          <!-- <p-dropdown
+                            [options]="catagories"
+                            formControlName="category"
+                            optionLabel="name"
+                            optionValue="id"
+                            [filter]="true"
+                            filterBy="name"
+                            [showClear]="true"
+                            placeholder="Select a Category"
+                          ></p-dropdown> -->
+
+                          <small *ngIf="productForm.category.invalid && isSubmitted" class="p-error"
+                            >Category is required</small
+                          >
                         </div>
 
 

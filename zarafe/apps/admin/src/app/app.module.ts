@@ -65,12 +65,12 @@ const routes: Routes = [
     {
       path:'categories',
       component:CategoriesListComponent
-  },
-  {
+    },
+    {
     path:'categories/form',
     component:CategoriesFormComponent
-},
-{
+  },
+  {
   path:'categories/form/:id',
   component:CategoriesFormComponent
 },
@@ -86,8 +86,6 @@ component:ProductsFormComponent
 path:'products/form/:id',
 component:ProductsFormComponent
 },
-
-
 ]
 }
 ];
