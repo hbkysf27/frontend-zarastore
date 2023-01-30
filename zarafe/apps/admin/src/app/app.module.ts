@@ -34,6 +34,7 @@ import {EditorModule} from 'primeng/editor';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { TagModule } from 'primeng/tag';
+import {InputMaskModule} from 'primeng/inputmask';
 
 
 const UX_MODULE=[
@@ -51,6 +52,7 @@ const UX_MODULE=[
     DropdownModule,
     EditorModule,
     TagModule,
+    InputMaskModule,
 
 
 ]
