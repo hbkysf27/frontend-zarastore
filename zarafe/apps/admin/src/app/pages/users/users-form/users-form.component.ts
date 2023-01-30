@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -5,6 +6,7 @@ import { User, UsersService } from '@zarafe/users';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
 import { Location } from '@angular/common';
+import * as countriesLib from 'i18n-iso-countries';
 
 @Component({
   selector: 'admin-users-form',
@@ -48,6 +50,14 @@ export class UsersFormComponent implements OnInit{
   }
   private _getCountries() {
    // this.countries = this.usersService.getCountries();
+   countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
+   this.countries=Object.entries(countriesLib.getNames('en',{select: 'official'})).map(entry=>{
+    return{
+      id:entry[0],
+      name:entry[1]
+    }
+   });
+   console.log(this.countries);
   }
 
   private _addUser(user: User) {

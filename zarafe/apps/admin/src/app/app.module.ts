@@ -35,6 +35,8 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { TagModule } from 'primeng/tag';
 import {InputMaskModule} from 'primeng/inputmask';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 
 
 const UX_MODULE=[
@@ -107,7 +109,7 @@ component:UsersFormComponent
 }
 ];
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent, OrdersListComponent, OrdersDetailComponent],
     imports: [BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
