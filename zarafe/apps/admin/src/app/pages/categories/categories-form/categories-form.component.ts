@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/use-lifecycle-interface */
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService, Category } from '@zarafe/products';
@@ -15,7 +15,7 @@ import { timer } from 'rxjs';
   styles: [
   ]
 })
-export class CategoriesFormComponent {
+export class CategoriesFormComponent implements OnInit {
 
   form:FormGroup;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
@@ -24,7 +24,12 @@ export class CategoriesFormComponent {
   currentCategoryId: string;
 
   constructor(
-    private messageService: MessageService, private formBuilder: FormBuilder, private categoriesService : CategoriesService, private location:Location,private route: ActivatedRoute){}
+    private messageService: MessageService,
+    private formBuilder: FormBuilder,
+    private categoriesService : CategoriesService,
+    private location:Location,
+    private route: ActivatedRoute
+    ){}
 
   ngOnInit():void{
     this.form=this.formBuilder.group({
@@ -41,11 +46,6 @@ export class CategoriesFormComponent {
     {
       return;
     }
-
-
-
-
-
     const category : Category ={
       id : this.currentCategoryId,
       name: this.categoryForm.name.value,
@@ -54,12 +54,9 @@ export class CategoriesFormComponent {
     };
     if(this.editmode){
       this._updateCategory(category);
-
     }else{
       this._addCategory(category);
-
     }
-
   }
 
   onCancle(){
@@ -77,7 +74,6 @@ export class CategoriesFormComponent {
       this.messageService.add({severity:'error', summary:'Error', detail:'Category is Not Created'});
     }
     );
-
   }
   private _updateCategory(category :Category){
 

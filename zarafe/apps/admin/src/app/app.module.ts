@@ -11,6 +11,7 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+import { UsersModule } from '@zarafe/users';
 
 
 
@@ -37,6 +38,8 @@ import { TagModule } from 'primeng/tag';
 import {InputMaskModule} from 'primeng/inputmask';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
+import {FieldsetModule} from 'primeng/fieldset';
+
 
 
 const UX_MODULE=[
@@ -55,6 +58,7 @@ const UX_MODULE=[
     EditorModule,
     TagModule,
     InputMaskModule,
+    FieldsetModule
 
 
 ]
@@ -122,11 +126,14 @@ component:OrdersDetailComponent
     declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent, OrdersListComponent, OrdersDetailComponent],
     imports: [BrowserModule,
       BrowserAnimationsModule,
-      HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
+      HttpClientModule,
       ...UX_MODULE,
       CardModule,
       FormsModule,
       ReactiveFormsModule,
+      RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking'}),
+      UsersModule,
+
 
 
 
