@@ -33,7 +33,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {EditorModule} from 'primeng/editor';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
-
+import { TagModule } from 'primeng/tag';
 
 
 const UX_MODULE=[
@@ -49,7 +49,8 @@ const UX_MODULE=[
     InputTextareaModule,
     InputSwitchModule,
     DropdownModule,
-    EditorModule
+    EditorModule,
+    TagModule,
 
 
 ]
@@ -88,11 +89,23 @@ component:ProductsFormComponent
 path:'products/form/:id',
 component:ProductsFormComponent
 },
+{
+  path:'users',
+  component:UsersListComponent
+},
+{
+path:'users/form',
+component:UsersFormComponent
+},
+{
+path:'users/form/:id',
+component:UsersFormComponent
+},
 ]
 }
 ];
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent, UsersListComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent],
     imports: [BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule, RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking' }),
