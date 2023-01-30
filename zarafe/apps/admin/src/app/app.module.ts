@@ -105,6 +105,16 @@ component:UsersFormComponent
 path:'users/form/:id',
 component:UsersFormComponent
 },
+{
+  path:'orders',
+  component:OrdersListComponent
+},
+{
+path:'orders/:id',
+component:OrdersDetailComponent
+},
+
+
 ]
 }
 ];
