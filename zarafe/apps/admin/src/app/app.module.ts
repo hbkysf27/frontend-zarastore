@@ -11,7 +11,7 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
-import { UsersModule } from '@zarafe/users';
+import { AuthGuard, UsersModule } from '@zarafe/users';
 
 
 
@@ -68,6 +68,7 @@ const routes: Routes = [
   {
     path:'',
     component:ShellComponent,
+    canActivate:[AuthGuard],
     children : [
       {
         path:'dashboard',
