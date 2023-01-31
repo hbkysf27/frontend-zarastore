@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoriesService, Category } from '@zarafe/products';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styles: [
   ]
 })
-export class CategoriesListComponent {
+export class CategoriesListComponent implements OnInit, OnDestroy {
   categories: Category[]=[];
+  endsubs$:Subject<any>=new Subject();
 
 
   constructor(private categriesService: CategoriesService,private messageService: MessageService,
@@ -20,7 +22,13 @@ export class CategoriesListComponent {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
     this._getCategories();
+    this.endsubs$.complete();
 
+  }
+  ngOnDestroy() {
+    // this.endsubs$.next;
+    // this.endsubs$.next();
+    this.endsubs$.complete();
   }
 
 
@@ -50,7 +58,7 @@ export class CategoriesListComponent {
 
 
     private _getCategories(){
-      this.categriesService.getCategories().subscribe(cats =>{
+      this.categriesService.getCategories().pipe(takeUntil(this.endsubs$)).subscribe(cats =>{
         this.categories=cats;
       });
     }

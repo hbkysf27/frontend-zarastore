@@ -64,65 +64,7 @@ const UX_MODULE=[
 ]
 
 
-const routes: Routes = [
-  {
-    path:'',
-    component:ShellComponent,
-    canActivate:[AuthGuard],
-    children : [
-      {
-        path:'dashboard',
-        component:DashboardComponent
-    },
-    {
-      path:'categories',
-      component:CategoriesListComponent
-    },
-    {
-    path:'categories/form',
-    component:CategoriesFormComponent
-  },
-  {
-  path:'categories/form/:id',
-  component:CategoriesFormComponent
-},
-{
-  path:'products',
-  component:ProductsListComponent
-},
-{
-path:'products/form',
-component:ProductsFormComponent
-},
-{
-path:'products/form/:id',
-component:ProductsFormComponent
-},
-{
-  path:'users',
-  component:UsersListComponent
-},
-{
-path:'users/form',
-component:UsersFormComponent
-},
-{
-path:'users/form/:id',
-component:UsersFormComponent
-},
-{
-  path:'orders',
-  component:OrdersListComponent
-},
-{
-path:'orders/:id',
-component:OrdersDetailComponent
-},
 
-
-]
-}
-];
 @NgModule({
     declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent, OrdersListComponent, OrdersDetailComponent],
     imports: [BrowserModule,
@@ -132,7 +74,6 @@ component:OrdersDetailComponent
       CardModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule.forRoot(routes , { initialNavigation: 'enabledBlocking'}),
       UsersModule,
 
 
