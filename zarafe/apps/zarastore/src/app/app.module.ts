@@ -11,6 +11,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import {UiModule} from '@zarafe/ui';
 import {AccordionModule} from 'primeng/accordion';
+import { NavComponent } from './shared/nav/nav.component';
+import { ProductsModule } from '@zarafe/products';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -18,8 +20,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent],
-    imports: [BrowserModule,BrowserAnimationsModule, RouterModule.forRoot(routes), UiModule, AccordionModule],
+    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
+    imports: [BrowserModule,BrowserAnimationsModule, RouterModule.forRoot(routes), UiModule, AccordionModule,ProductsModule],
     providers: [],
     bootstrap: [AppComponent]
 })
