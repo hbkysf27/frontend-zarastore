@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from '@env/environment';
 import { Product } from '../models/product';
@@ -16,9 +16,13 @@ export class ProductsService {
    apiURLProducts=environment.apiURL + 'products';
   constructor(private http: HttpClient) {}
 
-    getProducts(): Observable<Product[]>
+    getProducts(categoriesFilter?:string[]): Observable<Product[]>
     {
-      return this.http.get<Product[]>(this.apiURLProducts);
+      let params=new HttpParams();
+      if(categoriesFilter){
+        params=params.append('categories',categoriesFilter.join(','));
+      }
+      return this.http.get<Product[]>(this.apiURLProducts,{params:params});
     }
 
     getProduct(productId: string): Observable<Product>
@@ -30,9 +34,6 @@ export class ProductsService {
       return this.http.post<Product>(this.apiURLProducts, productData);
     }
 
-    // updateProduct(product:Product):Observable<Product>{
-    //   return this.http.put<Product>(`${this.apiURLProducts}/${product.id}`,product);
-    // }
 
     updateProduct(productData:FormData, productid: string):Observable<Product>{
       return this.http.put<Product>(`${this.apiURLProducts}/${productid}`,productData);
@@ -45,6 +46,9 @@ export class ProductsService {
       return this.http
         .get<number>(`${this.apiURLProducts}/get/count`)
         .pipe(map((objectValue: any) => objectValue.productCount));
+    }
+    getFeaturedProducts(count: number): Observable<Product[]> {
+      return this.http.get<Product[]>(`${this.apiURLProducts}/get/featured/${count}`);
     }
 
 
