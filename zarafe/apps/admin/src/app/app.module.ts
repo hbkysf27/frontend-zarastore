@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -11,7 +11,7 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ProductsListComponent } from './pages/products/products-list/products-list.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
-import { AuthGuard, UsersModule } from '@zarafe/users';
+import { AuthGuard, JwtInterceptor, UsersModule } from '@zarafe/users';
 
 
 
@@ -139,7 +139,9 @@ component:OrdersDetailComponent
 
 
   ],
-    providers: [CategoriesService, MessageService,ConfirmationService],
+    providers: [CategoriesService, MessageService,ConfirmationService,
+    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi: true},
+    ],
     bootstrap: [AppComponent],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
