@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '@zarafe/orders';
 import { Subject, takeUntil } from 'rxjs';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
@@ -15,7 +16,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy{
   endSubs$: Subject<any> = new Subject();
   quantity: number;
 
-  constructor(private prodService: ProductsService, private route: ActivatedRoute) {}
+  constructor(private prodService: ProductsService, private route: ActivatedRoute, private cartservice: CartService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -40,7 +41,4 @@ export class ProductsPageComponent implements OnInit, OnDestroy{
         this.product = resProduct;
       });
   }
-
-
-
 }

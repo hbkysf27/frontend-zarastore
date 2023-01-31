@@ -12,6 +12,10 @@ import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@zarafe/products';
 import { UiModule } from '@zarafe/ui';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@zarafe/orders';
+import { MessagesComponent } from './shared/messages/messages.component';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -19,9 +23,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent, ],
-    imports: [BrowserModule,BrowserAnimationsModule, RouterModule.forRoot(routes), AccordionModule,ProductsModule,UiModule, HttpClientModule],
-    providers: [],
-    bootstrap: [AppComponent]
+    declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent, MessagesComponent, ],
+    imports: [BrowserModule,BrowserAnimationsModule, RouterModule.forRoot(routes), AccordionModule,ProductsModule,UiModule, HttpClientModule,
+      OrdersModule,ToastModule,
+    
+    ],
+    providers: [MessageService],
+    bootstrap: [AppComponent],
+    exports: [
+      MessagesComponent
+    ]
 })
 export class AppModule {}
