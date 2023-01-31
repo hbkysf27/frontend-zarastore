@@ -10,6 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
+import { ProductsPageComponent } from './pages/products-page/products-page.component';
+import {RatingModule} from 'primeng/rating';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { UiModule } from '@zarafe/ui';
 
 const routes: Routes = [
   {
@@ -19,18 +23,30 @@ const routes: Routes = [
   {
     path: 'category/:categoryid',
     component: ProductsListComponent
+  },
+  {
+    path: 'products/:productid',
+    component: ProductsPageComponent
   }
 ]
 @NgModule({
-    imports: [CommonModule, OrdersModule,RouterModule.forChild(routes),ButtonModule,CheckboxModule,FormsModule],
+    imports: [CommonModule, OrdersModule,RouterModule.forChild(routes),ButtonModule,CheckboxModule,FormsModule,
+      RatingModule,
+      InputNumberModule,
+      ButtonModule,
+      UiModule,
+      
+    
+    ],
     declarations: [
       ProductsSearchComponent,
       CategoriesBannerComponent,
       ProductItemComponent,
       FeaturedProductsComponent,
       ProductsListComponent,
+      ProductsPageComponent,
 
     ],
-    exports:[ProductsSearchComponent, CategoriesBannerComponent, ProductItemComponent, FeaturedProductsComponent, ProductsListComponent,]
+    exports:[ProductsSearchComponent, CategoriesBannerComponent, ProductItemComponent, FeaturedProductsComponent, ProductsListComponent, ProductsPageComponent,]
 })
 export class ProductsModule {}
