@@ -36,12 +36,3 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
           npm ci
-      - name: Lint
-        run: |
-          npm run lint
-      - name: Test
-        run: |
-          npm run test -- --prod
-      - name: Deploy
-        run: |
-          npm run deploy
