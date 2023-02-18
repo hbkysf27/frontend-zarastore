@@ -66,7 +66,7 @@ const UX_MODULE=[
 
 
 @NgModule({
-    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent, OrdersListComponent, OrdersDetailComponent],
+    declarations: [AppComponent,SidebarComponent,ShellComponent,DashboardComponent, CategoriesListComponent, CategoriesFormComponent, ProductsListComponent, ProductsFormComponent, UsersFormComponent,UsersListComponent, OrdersListComponent],
     imports: [BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule,

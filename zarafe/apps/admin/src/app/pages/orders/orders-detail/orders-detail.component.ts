@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Order, OrdersService, ORDER_STATUS } from '@zarafe/orders';
+import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'admin-orders-detail',
@@ -24,7 +28,7 @@ export class OrdersDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.endsubs$.next();
+    this.endsubs$.next;
     this.endsubs$.complete();
   }
 
